@@ -48,12 +48,12 @@
 
     ```shell
     # build the website
-    (./demo-edf): gatsby build
+    gatsby build
 
     # install surge.sh globally
     npm install --global surge
 
     #deploy your site
-    (./demo-edf): surge public/
+    surge public/
     
 
