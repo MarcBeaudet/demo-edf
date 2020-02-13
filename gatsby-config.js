@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Demo EDF`,
+    description: `Static site using graphql to render csv data`,
+    author: `@mbeaudet`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -14,6 +14,25 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-apiserver`,
+      options: {
+        url: `http://localhost:5000/data`,
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        name: `records`,
+      },
+    },
+    `gatsby-transformer-csv`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
